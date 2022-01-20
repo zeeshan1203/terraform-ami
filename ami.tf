@@ -45,7 +45,7 @@ resource "null_resource" "ansible-apply" {
       "sudo yum install python3-pip -y",
       "sudo pip3 install pip --upgrade",
       "sudo pip3 install ansible==4.1.0",
-      "ansible-pull -i localhost, -U https://github.com/zeeshan1203/ansible.git roboshop-pull.yml -e ENV=ENV  -e COMPONENT=${var.COMPONENT} -e PAT=${jsondecode(data.aws_secretsmanager_secret_version.secrets.secret_string)["PAT"]}"
+      "ansible-pull -i localhost, -U https://github.com/zeeshan1203/ansible.git roboshop-pull.yml -e ENV=ENV  -e COMPONENT=${var.COMPONENT} -e PAT=${jsondecode(data.aws_secretsmanager_secret_version.secrets.secret_string)["PAT"]} -e APP_VERSION=${var.APP_VERSION}"
     ]
   }
 }
