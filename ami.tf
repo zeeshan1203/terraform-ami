@@ -36,7 +36,7 @@ resource "aws_security_group" "sg" {
 resource "null_resource" "ansible-apply" {
   provisioner "remote-exec" {
     connection {
-      host                    = element(aws_instance.ami-instance.public_ip, count.index)
+      host                    = aws_instance.ami-instance.public_ip
       user                    = jsondecode(data.aws_secretsmanager_secret_version.secrets.secret_string)["SSH_USER"]
       password                = jsondecode(data.aws_secretsmanager_secret_version.secrets.secret_string)["SSH_PASS"]
     }
